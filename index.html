@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Manutenção TI</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Variáveis para cores com tema Matrix */
+    :root {
+      --primary-color: #0f0;       /* verde Matrix */
+      --secondary-color: #66ff66;   /* verde mais claro */
+      --background-color: #121212;  /* fundo escuro para o conteúdo */
+      --card-background: #1e1e1e;     /* fundo dos cards */
+      --text-color: #eeeeee;        /* cor principal dos textos */
+      --nav-background: #1f1f1f;      /* fundo da navegação */
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    /* Header com efeito Matrix */
+    header {
+      position: relative;
+      height: 250px;
+      background: #000;
+      overflow: hidden;
+    }
+    /* Canvas para a animação Matrix */
+    #matrixCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    /* Conteúdo do header (título) */
+    .header-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: var(--primary-color);
+      padding-top: 50px;
+    }
+    .header-content h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    .header-content p {
+      font-size: 1.2rem;
+    }
+    
+    /* Navegação sticky */
+    nav {
+      background: var(--nav-background);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+    }
+    nav ul li {
+      margin: 0 1rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: var(--primary-color);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .card {
+      background: var(--card-background);
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.7);
+      padding: 1.5rem;
+      flex: 1 1 280px;
+      max-width: 300px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0,0,0,0.9);
+    }
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      color: var(--secondary-color);
+    }
+    .card h3 i {
+      margin-right: 0.5rem;
+      color: var(--primary-color);
+    }
+    /* Imagem do card */
+    .card-img {
+      width: 100%;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    .card p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #bbbbbb;
+    }
+    .card a {
+      text-decoration: none;
+      color: #000;
+      background: var(--primary-color);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    .card a:hover {
+      background: var(--secondary-color);
+    }
+    footer {
+      background: var(--nav-background);
+      color: var(--text-color);
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      .header-content h1 {
+        font-size: 2.2rem;
+      }
+      nav ul {
+        flex-direction: column;
+      }
+      nav ul li {
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="header-content">
+      <h1>Painel de Manutenção TI</h1>
+      <p>Acesse os downloads dos softwares e ferramentas para manutenção de computadores</p>
+    </div>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#softwares">Softwares</a></li>
+      <li><a href="#ferramentas">Ferramentas</a></li>
+      <li><a href="#outros">Outros Links</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <section id="softwares">
+      <h2 class="section-title">Softwares</h2>
+      <div class="cards">
+        <div class="card">
+          <h3><i class="fas fa-desktop"></i> Software 1</h3>
+          <img class="card-img" src="https://via.placeholder.com/300x180" alt="Imagem do Software 1">
+          <p>Descrição breve do software.</p>
+          <a href="https://www.exemplo.com/download/software1" target="_blank"><i class="fas fa-download"></i> Baixar</a>
+        </div>
+        <div class="card">
+          <h3><i class="fas fa-desktop"></i> Software 2</h3>
+          <img class="card-img" src="https://via.placeholder.com/300x180" alt="Imagem do Software 2">
+          <p>Descrição breve do software.</p>
+          <a href="https://www.exemplo.com/download/software2" target="_blank"><i class="fas fa-download"></i> Baixar</a>
+        </div>
+      </div>
+    </section>
+    <section id="ferramentas">
+      <h2 class="section-title">Ferramentas</h2>
+      <div class="cards">
+        <div class="card">
+          <h3><i class="fas fa-tools"></i> Ferramenta 1</h3>
+          <img class="card-img" src="https://via.placeholder.com/300x180" alt="Imagem da Ferramenta 1">
+          <p>Descrição breve da ferramenta.</p>
+          <a href="https://www.exemplo.com/download/ferramenta1" target="_blank"><i class="fas fa-download"></i> Baixar</a>
+        </div>
+        <div class="card">
+          <h3><i class="fas fa-tools"></i> Ferramenta 2</h3>
+          <img class="card-img" src="https://via.placeholder.com/300x180" alt="Imagem da Ferramenta 2">
+          <p>Descrição breve da ferramenta.</p>
+          <a href="https://www.exemplo.com/download/ferramenta2" target="_blank"><i class="fas fa-download"></i> Baixar</a>
+        </div>
+      </div>
+    </section>
+    <section id="outros">
+      <h2 class="section-title">Outros Links</h2>
+      <div class="cards">
+        <div class="card">
+          <h3><i class="fas fa-link"></i> Site de Downloads</h3>
+          <img class="card-img" src="https://via.placeholder.com/300x180" alt="Imagem do Site de Downloads">
+          <p>Visite este site para acessar outros downloads de softwares.</p>
+          <a href="https://www.exemplo.com" target="_blank"><i class="fas fa-external-link-alt"></i> Visitar Site</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <p>&copy; 2025 Natanael Carvalho. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Script para o efeito Matrix no banner -->
+  <script>
+    const canvas = document.getElementById("matrixCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.height = document.querySelector("header").offsetHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const lettersArr = letters.split("");
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+    for (let x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = getComputedStyle(document.documentElement)
+                      .getPropertyValue('--primary-color').trim() || "#0f0";
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = lettersArr[Math.floor(Math.random() * lettersArr.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    setInterval(draw, 33);
+  </script>
+</body>
+</html>
