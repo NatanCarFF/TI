@@ -1,4 +1,4 @@
-line 1159
+line 1536
 {
   "WPFInstall1password": {
     "category": "Utilities",
@@ -1420,7 +1420,7 @@ line 1159
     "category": "Document",
     "choco": "notepadplusplus",
     "content": "Notepad++",
-    "description": "Notepad++ is a free, open-source code editor and Notepad replacement with support for multiple languages.",
+    "description": "O Notepad++ é um editor de código gratuito e de código aberto que substitui o Bloco de Notas, com suporte para vários idiomas.",
     "link": "https://notepad-plus-plus.org/",
     "winget": "Notepad++.Notepad++"
   },
